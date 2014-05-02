@@ -153,14 +153,14 @@ class NavigationTest extends BootstrapperWrapper
   public function testLinkBasic()
   {
     $link = Navigation::link('foo', '#');
-    $match = array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => true);
+    $match = array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => true, 'encode'=> true);
     $this->assertEquals($match, $link);
   }
 
   public function testLinkAll()
   {
     $link = Navigation::link('foo', '#', true, false, array('label' => 'bar', 'url' => '#1'));
-    $match = array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' => array('label' => 'bar', 'url' => '#1'), 'icon' => null, 'visible' => true);
+    $match = array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' => array('label' => 'bar', 'url' => '#1'), 'icon' => null, 'visible' => true, 'encode'=> true);
     $this->assertEquals($match, $link);
   }
 
@@ -171,8 +171,8 @@ class NavigationTest extends BootstrapperWrapper
         array('bar', '#')
       ));
     $match = array(
-      array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null),
-      array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null),
+      array('label'=> 'foo', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null,  'encode'=> true),
+      array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null, 'encode'=> true),
       );
     $this->assertEquals($match, $link);
   }
@@ -192,11 +192,11 @@ class NavigationTest extends BootstrapperWrapper
     $match = array(
         array('label'=> 'foo', 'url' => '#', 'active' => true, 'disabled' => false, 'items' =>
           array(
-            array('label'=> 'foo1', 'url' => '#foo1', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null),
-            array('label'=> 'foo2', 'url' => '#foo2', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null),
-          ), 'icon' => null, 'visible' => false
+            array('label'=> 'foo1', 'url' => '#foo1', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null, 'encode'=> true),
+            array('label'=> 'foo2', 'url' => '#foo2', 'active' => false, 'disabled' => false, 'items' => null, 'icon' => null, 'visible' => null, 'encode'=> true),
+          ), 'icon' => null, 'visible' => false, 'encode'=> true
         ),
-        array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => true, 'items' => null, 'icon' => null, 'visible' => null),
+        array('label'=> 'bar', 'url' => '#', 'active' => false, 'disabled' => true, 'items' => null, 'icon' => null, 'visible' => null, 'encode'=> true),
       );
 
     $this->assertEquals($match, $link);

@@ -63,6 +63,8 @@ class Navigation
 
             $icon = isset($item['icon']) ? $item['icon'] : null;
 
+            $encode = isset($item['encode'])? $item['encode']:true;
+
             // Skip not visible items
             if (!$visible) {
                 continue;
@@ -108,7 +110,7 @@ class Navigation
                     $item['attributes'] = array();
                 }
 
-                $html .= '<li '.static::getClasses($item, true, $autoroute).'>'.static::linkItem($item['url'], $item['label'], $item['attributes'], true, $icon).'</li>';
+                $html .= '<li '.static::getClasses($item, true, $autoroute).'>'.static::linkItem($item['url'], $item['label'], $item['attributes'], $encode, $icon).'</li>';
             }
         }
 
@@ -255,9 +257,9 @@ class Navigation
      *
      * @return mixed
      */
-    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null, $visible = true)
+    public static function link($label, $url, $active = false, $disabled = false, $items = null, $icon = null, $visible = true, $encode=true)
     {
-        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon, 'visible' => $visible);
+        return array('label'=> $label, 'url' => $url, 'active' => $active, 'disabled' => $disabled, 'items' => $items, 'icon' => $icon, 'visible' => $visible, 'encode'=>$encode);
     }
 
     /**
@@ -267,7 +269,7 @@ class Navigation
      *
      * @return mixed
      */
-    public static function links($links)
+    public static function links($links, $encode=true)
     {
         if ($links == null) {
             return $links;
@@ -282,7 +284,7 @@ class Navigation
             $items = array_get($link, 4);
             $icon = array_get($link, 5);
             $visible = array_get($link, 6);
-            $l[] = static::link($label, $url, $active, $disabled, static::links($items), $icon, $visible);
+            $l[] = static::link($label, $url, $active, $disabled, static::links($items), $icon, $visible, $encode);
         }
 
         return $l;
