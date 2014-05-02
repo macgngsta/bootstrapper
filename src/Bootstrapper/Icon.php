@@ -97,4 +97,20 @@ class Icon extends Tag
     {
         return static::__callStatic($icon, $attributes);
     }
+
+    /**
+    * Return standard glyphicon
+    * Sample Usage:
+    * <code>
+    * Icon::make('glyphicon_plus');
+    * // <span class="glyphicon glyphicon_plus"></span>
+    * </code>
+    */
+    public static function makeGlyphicon($icon,$attributes=array(), $tag='span')
+    {
+        $icon = static::__callStatic($icon, $attributes);
+        $icon->addClass('glyphicon');
+        $icon->setElement($tag);
+        return $icon;
+    }
 }

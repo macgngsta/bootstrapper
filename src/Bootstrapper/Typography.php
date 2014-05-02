@@ -30,6 +30,18 @@ class Typography
     const PRIMARY = 'text-primary';
     const DANGER  = 'text-danger';
 
+    const LEFT_ALIGN    = 'text-left';
+    const CENTER_ALIGN = 'text-center';
+    const RIGHT_ALIGN = 'text-right';
+    const JUSTIFY_ALIGN  = 'text-justify';
+
+    const HEADING_1 = 'h1';
+    const HEADING_2 = 'h2';
+    const HEADING_3 = 'h3';
+    const HEADING_4 = 'h4';
+    const HEADING_5 = 'h5';
+    const HEADING_6 = 'h6';
+
     /**
      * Create a new Typography.
      *
@@ -46,7 +58,121 @@ class Typography
         return '<'.$tag.Helpers::getContainer('html')->attributes($attributes).'>'.$message.'</'.$tag.'>';
     }
 
-    /* Create a new lead text.
+    /**
+     * Allow wrapping of some tags, such as <small>, or <strong>
+    */
+    protected static function createWrapper($message, $tag, $attributes=array())
+    {
+        return '<'.$tag.Helpers::getContainer('html')->attributes($attributes).'>'.$message.'</'.$tag.'>';
+    }
+
+    /** 
+     * Wrap with header element
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function heading($message, $tag=Typography::HEADING_1, $attributes=array())
+    {
+        return static::createWrapper($message, $tag, $attributes);
+    }
+
+    /** 
+     * Wrap with strong
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function strong($message, $tag='strong', $attributes=array())
+    {
+        return static::createWrapper($message, $tag, $attributes);
+    }
+
+    /** 
+     * Wrap with small
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function small($message, $tag='small', $attributes=array())
+    {
+        return static::createWrapper($message, $tag, $attributes);
+    }
+
+    /** 
+     * Wrap with italics
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function italics($message, $tag='em', $attributes=array())
+    {
+        return static::createWrapper($message, $tag, $attributes);
+    }
+
+
+    /**
+     * Create a new left aligned
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function left($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::LEFT_ALIGN, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new center aligned
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function center($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::CENTER_ALIGN, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new right aligned
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function right($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::RIGHT_ALIGN, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new justify aligned
+     *
+     * @param string $message    Message in tag
+     * @param array  $attributes Parent div attributes
+     *
+     * @return string Typography HTML
+     */
+    public static function justify($message, $tag = 'p', $attributes = array())
+    {
+        return static::createEmphasis(Typography::JUSTIFY_ALIGN, $message, $tag, $attributes);
+    }
+
+    /**
+     * Create a new lead text.
      *
      * @param string $message    Message in tag
      * @param array  $attributes Parent div attributes

@@ -23,6 +23,16 @@ class IconTest extends BootstrapperWrapper
   ));
 
   /**
+   * Matcher for the icon
+   * @var array
+   */
+  private $standardGlyphIcon = array(
+    'tag' => 'span',
+    'attributes' => array(
+      'class'    => 'glyphicon glyphicon-folder-open',
+  ));
+
+  /**
    * Matcher for the icon with attributes
    * @var array
    */
@@ -41,6 +51,15 @@ class IconTest extends BootstrapperWrapper
 
     $this->assertHTML($this->baseIcon, $icon);
   }
+
+
+  public function testMakeGlyphicon()
+  {
+    $icon = Icon::makeGlyphicon($this->testIcon);
+
+    $this->assertHTML($this->standardGlyphIcon, $icon);
+  }
+
 
   public function testMakeWithAttributes()
   {

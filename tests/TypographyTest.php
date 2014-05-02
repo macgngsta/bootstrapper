@@ -25,6 +25,14 @@ class TypographyTest extends BootstrapperWrapper
     );
   }
 
+  private function createMatcher3($tag)
+  {
+    return array(
+      'tag'=>$tag,
+      'content'=>'foo'
+    );
+  }
+
   // Data providers ------------------------------------------------ /
 
   public function classes()
@@ -38,6 +46,20 @@ class TypographyTest extends BootstrapperWrapper
       array('success', 'text-success'),
       array('danger', 'text-danger'),
       array('primary', 'text-primary'),
+      array('left', 'text-left'),
+      array('center', 'text-center'),
+      array('right', 'text-right'),
+      array('justify', 'text-justify'),
+    );
+  }
+
+  public function tags()
+  {
+    return array(
+      array('heading', 'h1'),
+      array('strong', 'strong'),
+      array('small', 'small'),
+      array('italics', 'em'),
     );
   }
 
@@ -64,6 +86,17 @@ class TypographyTest extends BootstrapperWrapper
 
     $this->assertHTML($match, $typography);
   }
+
+  /**
+   * @dataProvider tags
+   */
+  public function testWrapper($method, $tag)
+  {
+    $typography=Typography::$method('foo');
+    $match = $this->createMatcher3($tag);
+    $this->assertHTML($match, $typography);
+  }
+
 
   private $list = array(
     'foo' => 'bar',
