@@ -16,6 +16,6 @@
 
     'bootstrap_version' => '3.1.1',
 
-    'jquery_version' => '2.1.0',
+    'jquery_version' => '1.10.2',
 
 );
