@@ -13,9 +13,16 @@ then check the
 Add the following to your `composer.json` file :
 
 ```json
-"require": {
-"patricktalmadge/bootstrapper": "dev-develop",
-},
+"repositories":[
+		{
+			"type":"vcs",
+			"url": "https://github.com/macgngsta/bootstrapper"
+		}
+	],
+	"require": {
+		"laravel/framework": "4.1.*",
+		"macgngsta/bootstrapper": "dev-bs311"
+	},
 ```
 
 Then register Bootstrapper's service provider with Laravel :
