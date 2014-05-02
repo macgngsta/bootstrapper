@@ -21,7 +21,7 @@ Add the following to your `composer.json` file :
 	],
 	"require": {
 		"laravel/framework": "4.1.*",
-		"macgngsta/bootstrapper": "dev-bs311"
+		"patricktalmadge/bootstrapper": "dev-bs311"
 	},
 ```
 
